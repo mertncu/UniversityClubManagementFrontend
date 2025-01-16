@@ -13,4 +13,5 @@ module com.mertncu.universityclubmanagementsystemfrontend {
     exports com.mertncu.universityclubmanagementsystemfrontend to javafx.graphics;
     opens com.mertncu.universityclubmanagementsystemfrontend.controller to javafx.fxml;
     opens com.mertncu.universityclubmanagementsystemfrontend.model to com.google.gson, javafx.base;
+    exports com.mertncu.universityclubmanagementsystemfrontend.controller to javafx.graphics;
 }

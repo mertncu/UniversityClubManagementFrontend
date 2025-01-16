@@ -4,23 +4,29 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 
 <BorderPane fx:id="mainBorderPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mertncu.universityclubmanagementsystemfrontend.controller.AdminHomeController">
+
+    <!-- Sol Menü -->
     <left>
-        <VBox spacing="10.0" style="-fx-padding: 10;">
-            <Label text="Admin Menu" />
-            <Button text="Manage Users" onAction="#handleManageUsers" />
-            <Button text="Manage Clubs" onAction="#handleManageClubs" />
-            <Button text="List Users" onAction="#handleListUsers" />
-            <Button text="List Clubs" onAction="#handleListClubs" />
+        <VBox spacing="15.0" style="-fx-padding: 15; -fx-background-color: #f4f4f4; -fx-border-radius: 10; -fx-background-radius: 10;">
+            <Label text="Admin Menu" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2B5797;" />
+            <Button text="Manage Users" onAction="#handleManageUsers" style="-fx-background-color: #2B5797; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 8; -fx-cursor: hand; -fx-padding: 10 20;" />
+            <Button text="Manage Clubs" onAction="#handleManageClubs" style="-fx-background-color: #2B5797; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 8; -fx-cursor: hand; -fx-padding: 10 20;" />
+            <Button text="List Users" onAction="#handleListUsers" style="-fx-background-color: #2B5797; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 8; -fx-cursor: hand; -fx-padding: 10 20;" />
+            <Button text="List Clubs" onAction="#handleListClubs" style="-fx-background-color: #2B5797; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 8; -fx-cursor: hand; -fx-padding: 10 20;" />
         </VBox>
     </left>
+
+    <!-- Merkez Alanı -->
     <center>
-        <VBox alignment="CENTER" spacing="20.0">
+        <VBox alignment="CENTER" spacing="30.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
             <padding>
                 <javafx.geometry.Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
-            <Label fx:id="welcomeLabel" text="Welcome, Admin!" />
+            <Label fx:id="welcomeLabel" text="Welcome, Admin!" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #2B5797;" />
         </VBox>
     </center>
+
 </BorderPane>

@@ -79,7 +79,14 @@ public class LoginController {
         adminHomeController.setApiService(apiService); // Pass the service
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+
+        // Pencere boyutlarını ayarlıyoruz
+        stage.setWidth(900);  // Genişlik
+        stage.setHeight(600); // Yükseklik
+
+        // Sahneyi güncelliyoruz
+        stage.setScene(scene);
         stage.show();
     }
 
