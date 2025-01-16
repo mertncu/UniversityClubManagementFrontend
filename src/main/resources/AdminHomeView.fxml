@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="mainBorderPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mertncu.universityclubmanagementsystemfrontend.controller.AdminHomeController">
+    <left>
+        <VBox spacing="10.0" style="-fx-padding: 10;">
+            <Label text="Admin Menu" />
+            <Button text="Manage Users" onAction="#handleManageUsers" />
+            <Button text="Manage Clubs" onAction="#handleManageClubs" />
+            <Button text="List Users" onAction="#handleListUsers" />
+            <Button text="List Clubs" onAction="#handleListClubs" />
+        </VBox>
+    </left>
+    <center>
+        <VBox alignment="CENTER" spacing="20.0">
+            <padding>
+                <javafx.geometry.Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <Label fx:id="welcomeLabel" text="Welcome, Admin!" />
+        </VBox>
+    </center>
+</BorderPane>

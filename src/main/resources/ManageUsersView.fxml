@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<VBox spacing="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mertncu.universityclubmanagementsystemfrontend.controller.ManageUsersController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <Label text="Create User" />
+    <GridPane hgap="10" vgap="10">
+        <Label text="User ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="userIdField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="userNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="userEmailField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label text="Role:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField fx:id="userRoleField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label text="Club:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <ComboBox fx:id="clubComboBox" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+    </GridPane>
+    <Button fx:id="createUserButton" onAction="#handleCreateUser" text="Create User" />
+
+    <Label text="Users" />
+    <TableView fx:id="usersTable" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+            <TableColumn fx:id="userIdColumn" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="userNameColumn" prefWidth="75.0" text="Name" />
+            <TableColumn fx:id="userEmailColumn" prefWidth="75.0" text="Email" />
+            <TableColumn fx:id="userRoleColumn" prefWidth="75.0" text="Role" />
+        </columns>
+    </TableView>
+    <HBox spacing="10.0">
+        <Button onAction="#handleUpdateUser" text="Update User" />
+        <Button onAction="#handleDeleteUser" text="Delete User" />
+    </HBox>
+</VBox>
