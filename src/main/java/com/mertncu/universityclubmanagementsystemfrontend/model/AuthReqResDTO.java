@@ -50,6 +50,17 @@ public class AuthReqResDTO {
     @SerializedName("users")
     private List<User> users;
 
+    @SerializedName("taskDTO")
+    private TaskDTO taskDTO;
+
+    @SerializedName("taskDTOs")
+    private List<TaskDTO> taskDTOs;
+
+    @SerializedName("clubs")
+    private List<Club> clubs;
+
+
+
     // Getters and setters for all fields
 
     public int getStatusCode() {
@@ -170,5 +181,29 @@ public class AuthReqResDTO {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public TaskDTO getTaskDTO() {
+        return taskDTO;
+    }
+
+    public void setTaskDTO(TaskDTO taskDTO) {
+        this.taskDTO = taskDTO;
+    }
+
+    public List<TaskDTO> getTaskDTOs() {
+        return taskDTOs;
+    }
+
+    public void setTaskDTOs(List<TaskDTO> taskDTOs) {
+        this.taskDTOs = taskDTOs;
+    }
+
+    public List<Club> getClubs() {
+        return clubs;
+    }
+
+    public void setClubs(List<Club> clubs) {
+        this.clubs = clubs;
     }
 }

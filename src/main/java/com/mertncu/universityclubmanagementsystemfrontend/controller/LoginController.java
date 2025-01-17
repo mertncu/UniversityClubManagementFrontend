@@ -48,7 +48,6 @@ public class LoginController {
                 apiService.setAuthToken(authToken);
 
                 System.out.println("Token received and stored: " + authToken.getAccessToken());
-
                 System.out.println("Login successful. Token: " + authToken.getAccessToken());
 
                 // Check the user's role
@@ -57,8 +56,8 @@ public class LoginController {
                     loadAdminHomePage(event, authToken);
                 } else {
                     // Handle other roles (e.g., load a UserHomeController)
-                    // For now, let's just show an alert
-                    showAlert(Alert.AlertType.INFORMATION, "Login Successful", "You are logged in as a regular user.");
+                    // Correctly load the UserHomePage for non-admin users
+                    loadUserHomePage(event, authToken); // Call loadUserHomePage() here
                 }
             } else {
                 // Login failed
@@ -86,6 +85,20 @@ public class LoginController {
         stage.setHeight(600); // Yükseklik
 
         // Sahneyi güncelliyoruz
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void loadUserHomePage(ActionEvent event, AuthToken authToken) throws IOException {
+        FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/UserHomeView.fxml"));
+        Parent root = loader.load();
+
+        UserHomeController userHomeController = loader.getController();
+        userHomeController.setAuthToken(authToken);
+        userHomeController.setApiService(apiService);
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }

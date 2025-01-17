@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.mertncu.universityclubmanagementsystemfrontend.controller.UserTasksController">
+
+    <TableView fx:id="tasksTable" prefHeight="400.0" prefWidth="600.0">
+        <columns>
+            <TableColumn fx:id="taskNameColumn" prefWidth="150.0" text="Task Name" />
+            <TableColumn fx:id="taskDescriptionColumn" prefWidth="200.0" text="Description" />
+            <TableColumn fx:id="taskDueDateColumn" prefWidth="100.0" text="Due Date" />
+            <TableColumn fx:id="taskStatusColumn" prefWidth="150.0" text="Status" />
+        </columns>
+    </TableView>
+
+</VBox>

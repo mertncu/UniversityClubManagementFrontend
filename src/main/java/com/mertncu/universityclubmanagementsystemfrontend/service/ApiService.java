@@ -1,12 +1,14 @@
 package com.mertncu.universityclubmanagementsystemfrontend.service;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.mertncu.universityclubmanagementsystemfrontend.model.AuthReqResDTO;
 import com.mertncu.universityclubmanagementsystemfrontend.model.AuthToken;
 import com.mertncu.universityclubmanagementsystemfrontend.model.Club;
 import com.mertncu.universityclubmanagementsystemfrontend.model.User;
 import com.mertncu.universityclubmanagementsystemfrontend.utils.HttpClientUtil;
+import com.mertncu.universityclubmanagementsystemfrontend.utils.LocalDateTypeAdapter;
 import org.apache.http.HttpHeaders;
 import org.apache.http.client.methods.*;
 import org.apache.http.entity.StringEntity;
@@ -17,16 +19,24 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class ApiService {
 
     private static final String BASE_URL = "http://localhost:8080"; // Replace with your backend URL
-    private final Gson gson = new Gson();
+    private Gson gson = new Gson();
     private AuthToken authToken;
 
     public void setAuthToken(AuthToken token) {
         this.authToken = token;
+    }
+
+    public ApiService() {
+        gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
+                .create();
     }
 
     // Authentication
@@ -249,4 +259,40 @@ public class ApiService {
             }
         }
     }
+
+    public CompletableFuture<AuthReqResDTO> getMyProfile() {
+        return CompletableFuture.supplyAsync(() -> {
+            try (CloseableHttpClient httpClient = HttpClientUtil.createHttpClient()) {
+                HttpGet httpGet = new HttpGet(BASE_URL + "/adminuser/get-profile");
+                httpGet.setHeader(HttpHeaders.AUTHORIZATION, "Bearer " + authToken.getAccessToken());
+
+                try (CloseableHttpResponse response = httpClient.execute(httpGet)) {
+                    String responseBody = EntityUtils.toString(response.getEntity());
+                    return gson.fromJson(responseBody, AuthReqResDTO.class);
+                }
+            } catch (IOException e) {
+                // Log the exception or handle it as per your application's needs
+                e.printStackTrace(); // This line should stay for debugging.
+                throw new RuntimeException("Failed to fetch user profile", e);
+            }
+        });
+    }
+
+    public CompletableFuture<AuthReqResDTO> getTasksByUser(String userId) {
+        return CompletableFuture.supplyAsync(() -> {
+            try (CloseableHttpClient httpClient = HttpClientUtil.createHttpClient()) {
+                HttpGet httpGet = new HttpGet(BASE_URL + "/public/tasks/getTasksByUser/" + userId);
+                httpGet.setHeader(HttpHeaders.AUTHORIZATION, "Bearer " + authToken.getAccessToken());
+
+                try (CloseableHttpResponse response = httpClient.execute(httpGet)) {
+                    String responseBody = EntityUtils.toString(response.getEntity());
+                    return gson.fromJson(responseBody, AuthReqResDTO.class);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Failed to get tasks by user", e);
+            }
+        });
+    }
+
 }
